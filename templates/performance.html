@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Analysis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .glass-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            width: 80%;
+            max-width: 900px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+        .glass-container:hover {
+            transform: scale(1.02);
+        }
+        h1 {
+            font-size: 36px;
+            color: #00bcd4;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+        }
+        .stats {
+            font-size: 22px;
+            font-weight: 600;
+        }
+        .confusion-matrix {
+            margin-top: 30px;
+            text-align: center;
+        }
+        img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out;
+        }
+        img:hover {
+            transform: scale(1.05);
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out, transform 0.2s;
+        }
+        button:hover {
+            background-color: #388e3c;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-container">
+        <h1>PERFORMANCE ANALYSIS</h1>
+
+        <div class="stats-container">
+            <div class="stats">
+                <p style="color: lime;">Precision & Recall</p>
+                <p>Recall | Precision</p>
+                <p>NORMAL: 0.99 | 0.099</p>
+                <p>ATTACKER: 0.98 | 0.095</p>
+            </div>
+        </div>
+
+        <div class="confusion-matrix">
+            <h2 style="color: red;">Confusion Matrix</h2>
+            <img src="../static/images/matrix.png" alt="Confusion Matrix">
+        </div>
+
+        <div class="button-container">
+            <a href="{{url_for('future')}}">
+                <button>Future</button>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

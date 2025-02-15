@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DDoS Detection - Pie Chart Analysis</title>
+    
+    <!-- Google Charts API -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Attack Type', 'Percentage'],
+          ['NORMAL', 50],
+          ['DOS', 20],
+          ['U2R', 15],
+          ['R2L', 10],
+          ['PROBE', 5]
+        ]);
+
+        var options = {
+          title: 'DDoS Attack Analysis',
+          is3D: true,
+          backgroundColor: 'transparent',
+          titleTextStyle: { color: '#ffffff', fontSize: 22 },
+          legend: { textStyle: { color: '#ffffff', fontSize: 16 } }
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+    </script>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+        .glass-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            width: 80%;
+            max-width: 900px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .glass-container:hover {
+            transform: scale(1.02);
+        }
+        h1 {
+            font-size: 30px;
+            color: #00bcd4;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        #piechart_3d {
+            width: 100%;
+            height: 500px;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out, transform 0.2s;
+        }
+        button:hover {
+            background-color: #388e3c;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-container">
+        <h1>DDoS Detection System - Pie Chart Analysis</h1>
+        <div id="piechart_3d"></div>
+        
+        <div class="button-container">
+            <a href="{{url_for('performance')}}">
+                <button>Performance Analysis</button>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

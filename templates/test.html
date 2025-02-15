@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DDOS Detection System</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 15px;
+            width: 50%;
+            margin: auto;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            display: block;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        input, select {
+            width: 90%;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-top: 15px;
+            color: white;
+            background: #ff6b6b;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #ff4c4c;
+        }
+
+        .prediction-text {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="title">🚀 DDoS Detection System 🔍</h1>
+    <p class="subtitle">Enter the network parameters to predict a potential DDoS attack.</p>
+
+    <div class="form-container">
+        <form action="{{ url_for('predict') }}" method="post">
+            <label for="duration">⏳ Duration:</label>
+            <input type="text" name="duration" placeholder="Enter duration..." required />
+
+            <label for="protocol_type">🔗 Protocol Type:</label>
+            <select id="protocol_type" name="protocol_type" required>
+                <option value="0">ICMP</option>
+                <option value="1">TCP</option>
+                <option value="2">UDP</option>
+            </select>
+
+            <label for="src_bytes">📤 Src Bytes:</label>
+            <input type="text" name="src_bytes" placeholder="Enter src_bytes..." required />
+
+            <label for="dst_bytes">📥 Dst Bytes:</label>
+            <input type="text" name="dst_bytes" placeholder="Enter dst_bytes..." required />
+
+            <label for="is_host_login">👤 Is Host Login:</label>
+            <input type="text" name="is_host_login" placeholder="Enter 0 or 1..." required />
+
+            <label for="is_guest_login">🎭 Is Guest Login:</label>
+            <input type="text" name="is_guest_login" placeholder="Enter 0 or 1..." required />
+
+            <label for="diff_srv_rate">📊 Diff Srv Rate:</label>
+            <input type="text" name="diff_srv_rate" placeholder="Enter diff_srv_rate..." required />
+
+            <label for="srv_diff_host_rate">🔄 Srv Diff Host Rate:</label>
+            <input type="text" name="srv_diff_host_rate" placeholder="Enter srv_diff_host_rate..." required />
+
+            <label for="flag">🚩 Flag:</label>
+            <input type="text" name="flag" placeholder="Enter flag..." required />
+
+            <button type="submit" class="btn">🔍 Predict Label</button>
+        </form>
+
+        <h2 class="prediction-text">Class is {{ prediction_text }}</h2>
+
+        <a href="{{ url_for('chart') }}" class="btn">📊 Analysis</a>
+    </div>
+
+</body>
+</html>

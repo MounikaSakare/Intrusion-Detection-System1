@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../static/css/main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+        <div class="logo"><i class="fa fa-weibo" aria-hidden="true"></i></div>
+        <h1>Login Admin</h1>
+      </div>
+      <form id="loginForm">
+        <div class="formFields">
+          <input type="email" id="email" placeholder="Email Address" required />
+          <input type="password" id="password" placeholder="Password" required />
+        </div>
+        <input type="submit" value="Log in" />
+      </form>
+      <button onclick="saveCredentials()">Register</button>
+    </div>
+    
+    <script>
+      emailjs.init("QHYD6gIa6YSH1Plm3"); // Use API key for initialization
+
+      function saveCredentials() {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        if (email && password) {
+          if (!localStorage.getItem(email)) {
+            localStorage.setItem(email, password);
+            sendConfirmationEmail(email);
+            alert('Registration successful! A confirmation email has been sent.');
+          } else {
+            alert('Email already registered. Please log in.');
+          }
+        } else {
+          alert('Please enter both email and password.');
+        }
+      }
+
+      function sendConfirmationEmail(email) {
+        emailjs.send("service_p9bjdsh", "template_cvimut4", {
+          to_email: email
+        }).then(
+          function(response) {
+            console.log('Email sent successfully!', response.status, response.text);
+          },
+          function(error) {
+            console.error('Email sending failed:', error);
+          }
+        );
+      }
+
+      document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        if (localStorage.getItem(email) === password) {
+          alert('Login successful!');
+          window.location.href = "{{ url_for('upload') }}";
+        } else {
+          alert('Invalid email or password. If you are new, please register.');
+        }
+      });
+    </script>
+  </body>
+</html>
