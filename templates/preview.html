@@ -5,49 +5,96 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
+  <meta name="description" content="DDoS Detection System Preview">
   <meta name="author" content="">
 
-  <title>DDOS Detection System</title>
+  <title>DDoS Detection System - Preview</title>
 
-  <!-- Custom fonts for this theme -->
-  <link href="../static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  <!-- FontAwesome & Google Fonts -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet">
 
-  <!-- Theme CSS -->
-  <link href="../static/css/freelancer.min.css" rel="stylesheet">
-    <style>
-   #loading {
-   background: url('../static/ajax-loader.gif') no-repeat center center;
-   position: absolute;
-   top: 0;
-   left: 59;
-   height: 100%;
-   width: 86%;
-   z-index: 9999999;
-}
-   </style>
-  
+  <!-- Bootstrap & Custom CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    /* Fix navbar overlapping issue */
+    body {
+        padding-top: 80px; /* Ensures content is visible below navbar */
+        background: linear-gradient(to right, #6a11cb, #2575fc);
+        color: white;
+        text-align: center;
+    }
+
+    /* Navbar Styling */
+    .navbar {
+        background: #1a1a1a !important;
+        padding: 15px 0;
+    }
+
+    .navbar-brand {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: white !important;
+    }
+
+    /* Loader */
+    #loading {
+        background: url('../static/ajax-loader.gif') no-repeat center center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 9999;
+        display: none;
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    /* Table Styling */
+    .preview-container {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        max-width: 80%;
+        margin: auto;
+        overflow-x: auto;
+    }
+
+    /* Button Styling */
+    .btn-train {
+        background: #ff69b4;
+        color: white;
+        font-size: 1.2rem;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: none;
+        margin-top: 20px;
+    }
+
+    .btn-train:hover {
+        background: #ff1493;
+    }
+
+  </style>
 
 </head>
 
 <body id="page-top">
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">DDOS Detection System</a>
-      
+      <a class="navbar-brand js-scroll-trigger" href="#">DDoS Detection System</a>
+    </div>
   </nav>
 
-
-  <!-- Contact Section -->
+  <!-- Preview Section -->
   <section class="page-section" id="contact">
     <div class="container">
-     <br>
-	 <br>
-      <!-- Contact Section Heading -->
+      <br><br>
       <h2 class="text-center text-uppercase text-secondary mb-0">Preview</h2>
 
       <!-- Icon Divider -->
@@ -59,64 +106,50 @@
         <div class="divider-custom-line"></div>
       </div>
 
-      <!-- Contact Section Form -->
-      <div class="row" style="margin-left:-350px">
-        <div class="col-lg-8 mx-auto">
-          <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-    {{ df_view.to_html(classes="table striped",na_rep="-") | safe}}
-        </div>
-		
+      <!-- Table Preview -->
+      <div class="preview-container">
+        {{ df_view.to_html(classes="table table-striped", na_rep="-") | safe }}
       </div>
-	  	 
-  </section>
- <div class="form-group" style="padding:0px 250px 10px 40px;height:200px">
-                    <input style="margin-left:500px" type="button" onclick="hideLoader()" class="btn btn-primary" value="Click to Train | Test" />
-					<div id="loading" style="display:None;margin-top:552950px"></div>
-					</div>
 
+      <!-- Train/Test Button -->
+      <div>
+        <button class="btn btn-train" onclick="hideLoader()">Click to Train | Test</button>
+      </div>
 
-  <!-- Copyright Section -->
-  <section class="copyright py-4 text-center text-white">
-    <div class="container">
-      
     </div>
   </section>
 
-  <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+  <!-- Loader -->
+  <div id="loading"></div>
+
+  <!-- Copyright -->
+  <section class="copyright py-4 text-center text-white">
+    <div class="container">
+      <small>&copy; 2025 DDoS Detection System</small>
+    </div>
+  </section>
+
+  <!-- Scroll to Top -->
   <div class="scroll-to-top d-lg-none position-fixed ">
     <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
       <i class="fa fa-chevron-up"></i>
     </a>
   </div>
 
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="../static/vendor/jquery/jquery.min.js"></script>
-  <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Plugin JavaScript -->
-  <script src="../static/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Contact Form JavaScript -->
-  <script src="../static/js/jqBootstrapValidation.js"></script>
-  <script src="../static/js/contact_me.js"></script>
-
-  <!-- Custom scripts for this template -->
-  <script src="../static/js/freelancer.min.js"></script>
-  
-  <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'></script>
-   <script type='text/javascript'>
-   
-function hideLoader() {  
-$('#loading').show(0).delay(10000).hide(0,function(){
-     alert("Training finished!");
-	 window.location = "{{url_for('home')}}";
-   });    
-}
-
-
-   </script>
-   
+  <script>
+    function hideLoader() {
+      $('#loading').fadeIn();
+      setTimeout(() => {
+        $('#loading').fadeOut();
+        alert("Training finished!");
+        window.location.href = "{{ url_for('home') }}";
+      }, 10000);
+    }
+  </script>
 
 </body>
 
